@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Sparkles, Menu as MenuIcon, Sun, Moon } from 'lucide-react';
 
 const Navigation = ({ activeSection, setIsMenuOpen, isMenuOpen, scrollToSection, personalInfo }) => {
-  const navItems = ['home', 'about', 'experience', 'skills', 'highlights', 'projects', 'case-studies', 'tooling', 'resources', 'certifications', 'achievements', 'contact'];
+  const navItems = ['home', 'about', 'experience', 'skills', 'highlights', 'projects', 'case-studies', 'tooling', 'certifications', 'achievements', 'contact'];
 
   const [isDesktopMenuOpen, setDesktopMenuOpen] = useState(false);
   const [dark, setDark] = useState(false);

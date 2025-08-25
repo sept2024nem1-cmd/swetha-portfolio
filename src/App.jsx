@@ -231,25 +231,7 @@ const App = () => {
         </div>
       </section>
 
-      <section id="resources" className="py-16 bg-transparent dark:bg-transparent">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionTitle title="Resources" />
-          <div className="grid md:grid-cols-3 gap-6">
-            <a href="/samples/test-plan.pdf" className="card-lavender p-6 block hover-scale" download>
-              <h4 className="font-semibold mb-2">Sample Test Plan</h4>
-              <p className="text-gray-700">Concise plan used to align scope, risks and timelines.</p>
-            </a>
-            <a href="/samples/bug-report.pdf" className="card-sky p-6 block hover-scale" download>
-              <h4 className="font-semibold mb-2">Sample Bug Report</h4>
-              <p className="text-gray-700">Clear repro steps, evidence and severity mapping.</p>
-            </a>
-            <a href="/samples/api-collection.json" className="card-mint p-6 block hover-scale" download>
-              <h4 className="font-semibold mb-2">Postman Collection</h4>
-              <p className="text-gray-700">Smoke API checks for quick CI validation.</p>
-            </a>
-          </div>
-        </div>
-      </section>
+      
       <CertificationsSection
         certifications={certifications}
         education={education}
