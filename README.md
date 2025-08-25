@@ -137,9 +137,17 @@ The project uses ESLint for code quality. Run `npm run lint` to check for issues
 
 ### Netlify
 
-1. Build the project: `npm run build`
-2. Upload the `dist` folder to Netlify
-3. Configure build settings if needed
+Option A – Connect Git repo (recommended)
+1. Push your repo to GitHub (do not commit node_modules).
+2. In Netlify → Add new site → Import from Git.
+3. Build command: `npm run build`  Publish directory: `dist`
+4. Add a `netlify.toml` at repo root (already included here):
+   - Redirect all routes to `/index.html` for client-side routing
+   - Set Node version to 18
+
+Option B – Drag-and-drop
+1. Run `npm run build` locally.
+2. Drag the `dist/` folder into Netlify Deploys.
 
 ### Other Platforms
 
