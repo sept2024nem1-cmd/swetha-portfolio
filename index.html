@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swetha Ravi - Software Test Engineer</title>
     <meta name="description" content="Portfolio of Swetha Ravi, Software Test Engineer specializing in QA, automation testing, and Agile methodologies." />
+    <script>
+      (function() {
+        try {
+          var stored = localStorage.getItem('theme');
+          var shouldDark = stored ? stored === 'dark' : window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (shouldDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

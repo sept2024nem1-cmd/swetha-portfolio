@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Menu as MenuIcon, Sun, Moon } from 'lucide-react';
 
@@ -6,7 +6,25 @@ const Navigation = ({ activeSection, setIsMenuOpen, isMenuOpen, scrollToSection,
   const navItems = ['home', 'about', 'experience', 'skills', 'highlights', 'projects', 'case-studies', 'tooling', 'certifications', 'achievements', 'contact'];
 
   const [isDesktopMenuOpen, setDesktopMenuOpen] = useState(false);
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    const stored = localStorage.getItem('theme');
+    if (stored) return stored === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (dark) {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [dark]);
+
+  const toggleTheme = () => setDark((prev) => !prev);
 
   return (
     <nav className="fixed top-0 w-full bg-white/90 dark:bg-slate-900/80 backdrop-blur-md z-50 shadow-sm">
@@ -21,15 +39,12 @@ const Navigation = ({ activeSection, setIsMenuOpen, isMenuOpen, scrollToSection,
             <span>My Portfolio</span>
           </motion.div>
 
-          {/* Theme toggle */}
+          {/* Theme toggle (desktop) */}
           <button
-            onClick={() => {
-              setDark(!dark);
-              const root = document.documentElement;
-              if (!dark) root.classList.add('dark'); else root.classList.remove('dark');
-            }}
-            className="hidden md:inline-flex items-center gap-2 px-2.5 py-1.5 rounded-md border border-gray-200 text-sm hover:bg-gray-50 mr-2"
+            onClick={toggleTheme}
+            className="hidden md:inline-flex items-center gap-2 px-2.5 py-1.5 rounded-md border border-gray-200 dark:border-slate-700 text-sm hover:bg-gray-50 dark:hover:bg-slate-800 mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900"
             aria-label="Toggle theme"
+            aria-pressed={dark}
           >
             {dark ? <Sun size={16} /> : <Moon size={16} />}
             <span>{dark ? 'Light' : 'Dark'}</span>
@@ -65,6 +80,16 @@ const Navigation = ({ activeSection, setIsMenuOpen, isMenuOpen, scrollToSection,
             </div>
           </div>
 
+          {/* Theme toggle (mobile) */}
+          <button
+            onClick={toggleTheme}
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-md border border-gray-200 dark:border-slate-700 text-sm hover:bg-gray-50 dark:hover:bg-slate-800 mr-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900"
+            aria-label="Toggle theme"
+            aria-pressed={dark}
+          >
+            {dark ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
           {/* Mobile Menu Button */}
           <button
             className="md:hidden"
@@ -72,8 +97,8 @@ const Navigation = ({ activeSection, setIsMenuOpen, isMenuOpen, scrollToSection,
             aria-label="Toggle menu"
           >
             <div className="w-6 h-6 flex flex-col justify-center items-center">
-              <span className={`block w-6 h-0.5 bg-gray-900 transition-all ${isMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
-              <span className={`block w-6 h-0.5 bg-gray-900 mt-1 transition-all ${isMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+              <span className={`block w-6 h-0.5 bg-gray-900 dark:bg-gray-100 transition-all ${isMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+              <span className={`block w-6 h-0.5 bg-gray-900 dark:bg-gray-100 mt-1 transition-all ${isMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
             </div>
           </button>
         </div>

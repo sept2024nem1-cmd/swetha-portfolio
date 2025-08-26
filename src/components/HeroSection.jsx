@@ -28,13 +28,13 @@ const HeroSection = ({ personalInfo, scrollToSection }) => (
           transition={{ duration: 0.8 }}
           className="text-center lg:text-left"
         >
-          <h1 className="text-4xl lg:text-6xl font-extrabold text-gradient mb-4">
+          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold text-gradient mb-4 leading-tight">
             {personalInfo.name}
           </h1>
-          <h2 className="text-2xl lg:text-3xl text-blue-600 mb-4">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl text-blue-600 mb-4 leading-snug">
             {personalInfo.title}
           </h2>
-          <p className="text-xl text-gray-700 mb-8 whitespace-nowrap overflow-hidden text-ellipsis md:whitespace-normal">
+          <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8 break-words whitespace-normal">
             {personalInfo.tagline}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
